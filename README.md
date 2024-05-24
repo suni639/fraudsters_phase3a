@@ -150,6 +150,7 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
     - Ensure the settings match the network configuration in `truffle-config.js` (host: `127.0.0.1`, port: `7545`).
 
 ## 2. Setting Up Docker Environment
+
 1. **Create Dockerfile**:
     ```Dockerfile
     # Use an official Python runtime as a parent image
@@ -165,7 +166,7 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
     RUN pip install --no-cache-dir -r requirements.txt
 
     # Install npm dependencies
-    RUN apt-get update && apt-get install -y npm && npm install
+    RUN apt-get update && apt-get install -y npm && npm install && rm -rf /var/lib/apt/lists/*
 
     # Make port 8545 available to the world outside this container
     EXPOSE 8545
@@ -173,8 +174,8 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
     # Define environment variable
     ENV PYTHONUNBUFFERED=1
 
-    # Run the data preparation script first
-    CMD ["python", "src/data_preparation.py"]
+    # Run the data preparation script first and then keep the container running
+    CMD ["bash", "-c", "python src/data_preparation.py && tail -f /dev/null"]
     ```
 
 2. **Create requirements.txt**:
@@ -186,14 +187,24 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
     requests==2.25.1
     ```
 
-3. **Build the Docker Image**:
-    ```powershell
-    docker build -t fraudbusters_phase3a .
+3. **Create docker-compose.yml**:
+    ```yaml
+    version: '3.8'
+
+    services:
+      fraudbusters_phase3a:
+        build: .
+        ports:
+          - "8545:8545"
+        network_mode: "host"
+        environment:
+          - PYTHONUNBUFFERED=1
+        command: bash -c "python src/data_preparation.py && tail -f /dev/null"
     ```
 
-4. **Run the Docker Container**:
+4. **Build and Start the Docker Container**:
     ```powershell
-    docker run -it --rm --name fraudbusters_container fraudbusters_phase3a
+    docker-compose up --build
     ```
 
 ## 3. Deploy Smart Contract
@@ -215,8 +226,10 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
 ## 4. Running the Project Scripts
 1. **Access the Running Container**:
     ```powershell
-    docker exec -it fraudbusters_container /bin/bash
+    docker exec -it <container_id> /bin/bash
     ```
+
+    Replace `<container_id>` with the actual container ID obtained from `docker ps`.
 
 2. **Run the Local Training Script**:
     ```bash
@@ -240,3 +253,4 @@ _Figure 2: Screenshot of the deployed smart contract on Ganache._
 
 ## Summary
 This setup includes starting Ganache, configuring Docker, and running all necessary scripts to execute Phase 3A. Each script must be run in order, starting with `data_preparation.py` to ensure the data is ready for processing.
+

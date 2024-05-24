@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install npm dependencies
-RUN apt-get update && apt-get install -y npm && npm install
+RUN apt-get update && apt-get install -y npm && npm install && rm -rf /var/lib/apt/lists/*
 
 # Make port 8545 available to the world outside this container
 EXPOSE 8545
@@ -19,5 +19,5 @@ EXPOSE 8545
 # Define environment variable
 ENV PYTHONUNBUFFERED=1
 
-# Run the data preparation script first
-CMD ["python", "src/data_preparation.py"]
+# Run the data preparation script first and then keep the container running
+CMD ["bash", "-c", "python src/data_preparation.py && tail -f /dev/null"]
