@@ -100,7 +100,7 @@ The objective of this phase is to implement a federated learning framework where
 4. **Decentralized Trust**: Trust is established without relying on a central authority.
 5. **Immutability**: Once recorded, the updates cannot be altered, ensuring the reliability of the process.
 
-## Explanation of New Technologies
+## Explanation of Blockchain Technologies Used in Phase 3A
 ### Truffle
 A development framework for Ethereum that makes it easier to manage and deploy smart contracts.
 
@@ -109,9 +109,12 @@ A personal blockchain for Ethereum development that allows you to deploy contrac
 
 ## Placeholders for Relevant Diagrams/Pics
 - Diagram of the federated learning process with blockchain integration.
-- Screenshot of the deployed smart contract on Ganache.
 
-## Detailed Execution Process / Steps
+![Deployed smart contract on Ganache](pics/ganache_contract.png)
+
+_Figure 2: Screenshot of the deployed smart contract on Ganache._
+
+## Detailed Execution Steps
 
 ### 1. Setting Up the Blockchain
 - Create and deploy a smart contract using Truffle and Ganache.
@@ -233,4 +236,4 @@ A personal blockchain for Ethereum development that allows you to deploy contrac
     ```
 
 ## Summary
-This setup includes starting Ganache, configuring Docker, and running all necessary scripts to execute Phase 3A. Each script must be run in order, starting with `data_preparation.py` to ensure the data is ready for processing. Follow this guide to successfully execute Phase 3A of your project.
+This setup includes starting Ganache, configuring Docker, and running all necessary scripts to execute Phase 3A. Each script must be run in order, starting with `data_preparation.py` to ensure the data is ready for processing.
