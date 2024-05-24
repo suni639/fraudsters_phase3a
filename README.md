@@ -152,7 +152,7 @@ A personal blockchain for Ethereum development that allows you to deploy contrac
 2. Ensure the settings match the network configuration in `truffle-config.js` (host: `127.0.0.1`, port: `7545`).
 
 ### Deploy the Smart Contract
-1. Navigate to the `phase3a-federated_learning_with_blockchain` directory.
+1. Navigate to the project directory.
 2. Compile and migrate the smart contract:
     ```powershell
     truffle compile
