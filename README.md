@@ -93,6 +93,11 @@ ZKML combines zero-knowledge proofs (ZKPs) with machine learning (ML) to allow f
 ## Focus of This Phase
 The objective of this phase is to implement a federated learning framework where model updates from clients are submitted to a blockchain. The blockchain ensures the integrity and transparency of the updates before they are aggregated to form a global model.
 
+
+![Federated learning and blockchain](pics/fl_blockchain.png)
+_Figure 1: Diagram of a generic federated learning process with blockchain integration._
+
+
 ## Benefits of Using Blockchain with Federated Learning
 1. **Data Integrity**: Blockchain ensures that the data (model updates) cannot be tampered with once recorded.
 2. **Transparency**: All updates are logged on the blockchain, providing a transparent record of contributions.
@@ -107,12 +112,10 @@ A development framework for Ethereum that makes it easier to manage and deploy s
 ### Ganache
 A personal blockchain for Ethereum development that allows you to deploy contracts, develop applications, and run tests.
 
-![Federated learning and blockchain](pics/fl_blockchain.png)
-_Figure 1: Diagram of a generic federated learning process with blockchain integration._
 
 ![Deployed smart contract on Ganache](pics/ganache_contract.png)
-
 _Figure 2: Screenshot of the deployed smart contract on Ganache._
+
 
 ## Detailed Execution Steps
 
