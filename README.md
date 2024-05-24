@@ -107,8 +107,8 @@ A development framework for Ethereum that makes it easier to manage and deploy s
 ### Ganache
 A personal blockchain for Ethereum development that allows you to deploy contracts, develop applications, and run tests.
 
-## Placeholders for Relevant Diagrams/Pics
-- Diagram of the federated learning process with blockchain integration.
+![Federated learning and blockchain](pics/fl_blockchain.png)
+_Figure 1: Diagram of a generic federated learning process with blockchain integration._
 
 ![Deployed smart contract on Ganache](pics/ganache_contract.png)
 
