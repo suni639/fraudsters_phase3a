@@ -132,53 +132,105 @@ A personal blockchain for Ethereum development that allows you to deploy contrac
 ### 6. Evaluate Global Model
 - Evaluate the performance of the global model using various metrics.
 
-## How to Run
+# Step-by-Step Guide to Execute Phase 3A
 
-### Setup the Environment
-1. **Create Virtual Environment**
-    ```powershell
-    python -m venv env_phase3a
-    .\env_phase3a\Scripts\Activate
+## Prerequisites
+1. **Docker**: Ensure Docker Desktop is installed and running.
+2. **Ganache**: Install and run Ganache.
+
+## 1. Setting Up Ganache
+1. **Start Ganache**:
+    - Open Ganache and create a new workspace.
+    - Ensure the settings match the network configuration in `truffle-config.js` (host: `127.0.0.1`, port: `7545`).
+
+## 2. Setting Up Docker Environment
+1. **Create Dockerfile**:
+    ```Dockerfile
+    # Use an official Python runtime as a parent image
+    FROM python:3.8-slim
+
+    # Set the working directory in the container
+    WORKDIR /usr/src/app
+
+    # Copy the current directory contents into the container at /usr/src/app
+    COPY . .
+
+    # Install any needed packages specified in requirements.txt
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    # Install npm dependencies
+    RUN apt-get update && apt-get install -y npm && npm install
+
+    # Make port 8545 available to the world outside this container
+    EXPOSE 8545
+
+    # Define environment variable
+    ENV PYTHONUNBUFFERED=1
+
+    # Run the data preparation script first
+    CMD ["python", "src/data_preparation.py"]
     ```
 
-2. **Install Dependencies**
-    ```powershell
-    pip install pandas scikit-learn imblearn web3 requests
-    npm install
+2. **Create requirements.txt**:
+    ```plaintext
+    pandas==1.2.4
+    scikit-learn==0.24.2
+    imbalanced-learn==0.7.0
+    web3==5.20.0
+    requests==2.25.1
     ```
 
-### Start Ganache
-1. Open Ganache and create a new workspace.
-2. Ensure the settings match the network configuration in `truffle-config.js` (host: `127.0.0.1`, port: `7545`).
+3. **Build the Docker Image**:
+    ```powershell
+    docker build -t fraudbusters_phase3a .
+    ```
 
-### Deploy the Smart Contract
-1. Navigate to the project directory.
-2. Compile and migrate the smart contract:
+4. **Run the Docker Container**:
+    ```powershell
+    docker run -it --rm --name fraudbusters_container fraudbusters_phase3a
+    ```
+
+## 3. Deploy Smart Contract
+1. **Navigate to Project Directory**:
+    ```powershell
+    cd phase3a-federated_learning_with_blockchain
+    ```
+
+2. **Compile the Smart Contract**:
     ```powershell
     truffle compile
+    ```
+
+3. **Migrate the Smart Contract**:
+    ```powershell
     truffle migrate --network development
     ```
 
-### Run the Scripts
-1. **Data Preparation**
+## 4. Running the Project Scripts
+1. **Access the Running Container**:
     ```powershell
-    python src/data_preparation.py
+    docker exec -it fraudbusters_container /bin/bash
     ```
-2. **Local Training**
-    ```powershell
+
+2. **Run the Local Training Script**:
+    ```bash
     python src/local_training.py
     ```
-3. **Submit Model Updates**
-    ```powershell
+
+3. **Submit Model Updates**:
+    ```bash
     python src/submit_updates.py
     ```
-4. **Aggregate Models**
-    ```powershell
+
+4. **Aggregate Models**:
+    ```bash
     python src/aggregate_models.py
     ```
-5. **Evaluate Global Model**
-    ```powershell
+
+5. **Evaluate Global Model**:
+    ```bash
     python src/evaluate_global_model.py
     ```
 
-This guide ensures a detailed, step-by-step process to set up, run, and evaluate a federated learning framework integrated with blockchain technology.
+## Summary
+This setup includes starting Ganache, configuring Docker, and running all necessary scripts to execute Phase 3A. Each script must be run in order, starting with `data_preparation.py` to ensure the data is ready for processing. Follow this guide to successfully execute Phase 3A of your project.
