@@ -1,4 +1,4 @@
-# FraudBusters: A Federated Learning Odyssey with Blockchain and Zero Knowledge Proofs
+# FraudBusters - Phase 3A: Federated Learning with Blockchain
 
 ## Project Overview
 This project explores advanced techniques to enhance credit card fraud detection. By leveraging the Credit Card Fraud Detection dataset, the aim is to compare the performance, complexity, and computational intensity of centralized machine learning models versus decentralized federated learning (using logistic regression). The federated learning phase of the project is then extended into two additional phases that investigate the benefits of integrating blockchain and zero knowledge proofs.
