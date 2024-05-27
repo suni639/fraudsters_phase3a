@@ -22,7 +22,7 @@ This phase builds upon Phases 1 and 2, where a centralized logistic regression a
 
 ## Background
 
-Currently, financial institutions operate using centralized models to analyze and predict financial outcomes such as loan defaults and credit risks. Each party independently collects, processes, and analyzes its data to develop predictive models. While this approach ensures that sensitive data remains within the confines of each institution, it also presents significant limitations. Centralized models can suffer from limited data diversity, leading to biased or less accurate predictions. Furthermore, this isolation inhibits collaborative innovation, as banks are unable to leverage insights from a broader dataset without compromising data privacy.
+Currently, financial institutions operate using centralized models to analyze and predict financial outcomes such as fraud, loan defaults and credit risks. Each party independently collects, processes, and analyzes its data to develop predictive models. While this approach ensures that sensitive data remains within the confines of each institution, it also presents significant limitations. Centralized models can suffer from limited data diversity, leading to biased or less accurate predictions. Furthermore, this isolation inhibits collaborative innovation, as banks are unable to leverage insights from a broader dataset without compromising data privacy.
 
 Collaboration among financial institutions could vastly improve the accuracy and robustness of predictive models. However, sharing sensitive financial data such as transaction histories, credit scores, and demographic details poses severe privacy and security risks. Regulations and the competitive nature of the financial sector further complicate data sharing, making it difficult for banks to work together to enhance their predictive analytics.
 
@@ -32,7 +32,7 @@ To address these challenges, I developed a federated learning model that integra
 
 The objective is to collaboratively build a global logistic regression model without sharing private data, ensuring both privacy and enhanced predictive power (I chose logistic regression due to its relative simplicity and lower computational intensity compared to other algorithms).
 
-Federated learning, a concept originally developed by Google, enables multiple parties to collaboratively train machine learning models while keeping their data localized. Each institution trains its local model on its own data and then shares the encrypted model parameters on a blockchain network. The blockchain ensures secure, transparent, and tamper-proof sharing of model parameters. The Federated Learning Coordinator then aggregates these parameters using secure methods, creating a robust global model that benefits from the diverse data sources.
+Federated learning, a concept originally developed by Google in 2016, enables multiple parties to collaboratively train machine learning models while keeping their data localized. Each institution trains its local model on its own data and then shares the encrypted model parameters on a blockchain network. The blockchain ensures secure, transparent, and tamper-proof sharing of model parameters. The Federated Learning Coordinator then aggregates these parameters using secure methods, creating a robust global model that benefits from the diverse data sources.
 
 This approach solves the critical problem of data privacy while fostering collaboration and innovation. By integrating blockchain technology, the project ensures that model updates are transparent and secure, building trust among participating institutions. The result is a more accurate and comprehensive predictive model that none of the institutions could have developed independently.
 
@@ -83,7 +83,7 @@ _Figure 1: Diagram of a generic federated learning process with blockchain integ
   - Firstly, the dataset was split into a local training and global test set.
   - The local model training set was then split into 5 subsets (representing the five privately stored datasets of the financial institutions). 
   - Each subset was stratified to hold similar quantities of fraudulent transactions to ensure adequate model training.
-  - Once the local models had been trained, submitted to the on-chain smart contract and aggregated, this new global model was evaluated on the global test set.   
+  - The local models were then trained, submitted on-chain and aggregated to form a global model. This new global model was evaluated on the global test set.
 
 ## Blockchain Tech Used in Phase 3A
 ### Truffle
