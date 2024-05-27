@@ -175,7 +175,7 @@ _Figure 4: Screenshot of the global model evaluation scores._
     truffle migrate --network development
     ```
 
-## 4. Running the Project Scripts
+## 4. Running the Project Scripts (in order)
 1. **Preprocess the Data**:
     ```powershell
     python src/data_preparation.py
