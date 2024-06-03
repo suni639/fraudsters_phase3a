@@ -1,6 +1,10 @@
 # venv
 fraud
 
+#docker
+.devcontainer
+devcontainer.json
+
 # dataset
 creditcard.csv
 client_1_test.csv
